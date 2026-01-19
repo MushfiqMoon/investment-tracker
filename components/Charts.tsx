@@ -29,8 +29,8 @@ export default function Charts({ investments, stats }: ChartsProps) {
 
   // Prepare pie chart data
   const pieData = [
-    { name: 'Moons\nInvestment', value: stats.husbandTotal },
-    { name: 'Lovelys\nInvestment', value: stats.wifeTotal },
+    { name: 'Moon', value: stats.husbandTotal },
+    { name: 'Lovelys', value: stats.wifeTotal },
   ];
 
   // Prepare bar chart data - group by month
@@ -64,10 +64,10 @@ export default function Charts({ investments, stats }: ChartsProps) {
   };
 
   return (
-    <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
+    <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
       {/* Pie Chart */}
-      <div className="rounded-lg bg-white p-4 shadow-md dark:bg-gray-800 sm:p-6">
-        <h3 className="mb-4 text-base font-semibold text-gray-900 dark:text-white sm:text-lg">
+      <div className="group rounded-lg bg-white p-4 shadow-md dark:bg-gray-800 sm:p-6 lg:col-span-7 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-blue-500/20 dark:hover:shadow-blue-400/20">
+        <h3 className="mb-4 text-base font-semibold text-gray-900 dark:text-white sm:text-lg transition-colors duration-300">
           Investment Split
         </h3>
         <ResponsiveContainer width="100%" height={isMobile ? 250 : 300}>
@@ -87,30 +87,72 @@ export default function Charts({ investments, stats }: ChartsProps) {
               outerRadius={isMobile ? 70 : 100}
               fill="#8884d8"
               dataKey="value"
+              animationDuration={800}
+              animationBegin={0}
             >
               {pieData.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
-            <Tooltip formatter={formatCurrency} />
+            <Tooltip 
+              formatter={formatCurrency}
+              contentStyle={{
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                border: '1px solid rgba(0, 0, 0, 0.1)',
+                borderRadius: '8px',
+                transition: 'all 0.3s ease-in-out',
+              }}
+              animationDuration={300}
+            />
           </PieChart>
         </ResponsiveContainer>
       </div>
 
       {/* Bar Chart */}
-      <div className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">
-        <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white">
+      <div className="group rounded-lg bg-white p-6 shadow-md dark:bg-gray-800 lg:col-span-5 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-purple-500/20 dark:hover:shadow-purple-400/20">
+        <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white transition-colors duration-300">
           Growth Over Time
         </h3>
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={barData}>
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="month" />
-            <YAxis tickFormatter={formatCurrency} />
-            <Tooltip formatter={formatCurrency} />
-            <Legend />
-            <Bar dataKey="Husband" fill="#3b82f6" name="Your Investment" />
-            <Bar dataKey="Wife" fill="#a855f7" name="Her Investment" />
+            <CartesianGrid strokeDasharray="3 3" stroke="rgba(0, 0, 0, 0.1)" />
+            <XAxis 
+              dataKey="month" 
+              style={{ transition: 'all 0.3s ease-in-out' }}
+            />
+            <YAxis 
+              tickFormatter={formatCurrency}
+              style={{ transition: 'all 0.3s ease-in-out' }}
+            />
+            <Tooltip 
+              formatter={formatCurrency}
+              contentStyle={{
+                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                border: '1px solid rgba(0, 0, 0, 0.1)',
+                borderRadius: '8px',
+                transition: 'all 0.3s ease-in-out',
+              }}
+              animationDuration={300}
+            />
+            <Legend 
+              wrapperStyle={{ transition: 'all 0.3s ease-in-out' }}
+            />
+            <Bar 
+              dataKey="Husband" 
+              fill="#3b82f6" 
+              name="Moon"
+              radius={[8, 8, 0, 0]}
+              animationDuration={800}
+              animationBegin={0}
+            />
+            <Bar 
+              dataKey="Wife" 
+              fill="#a855f7" 
+              name="Lovely"
+              radius={[8, 8, 0, 0]}
+              animationDuration={800}
+              animationBegin={100}
+            />
           </BarChart>
         </ResponsiveContainer>
       </div>

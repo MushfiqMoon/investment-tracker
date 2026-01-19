@@ -14,7 +14,7 @@ import StatsCards from '@/components/StatsCards';
 import Charts from '@/components/Charts';
 import AddInvestmentModal from '@/components/AddInvestmentModal';
 import HistoryTable from '@/components/HistoryTable';
-import { LogOut, Plus } from 'lucide-react';
+import { LogOut, MessageCirclePlus } from 'lucide-react';
 
 export default function DashboardPage() {
   const [investments, setInvestments] = useState<Investment[]>([]);
@@ -102,60 +102,60 @@ export default function DashboardPage() {
 
   if (isLoading) {
     return (
-      <div className="flex min-h-screen items-center justify-center">
+      <div className="flex min-h-screen items-center justify-center animate-fade-in">
         <div className="text-center">
-          <div className="mb-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
-          <p className="text-gray-600 dark:text-gray-400">Loading dashboard...</p>
+          <div className="mb-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent transition-colors duration-300"></div>
+          <p className="text-gray-600 dark:text-gray-400 transition-colors duration-300 animate-pulse-slow">Loading dashboard...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 animate-fade-in">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="mb-8 flex items-center justify-between">
+        <div className="mb-8 flex items-center justify-between animate-fade-in-up">
           <div>
-            <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
               Investment Dashboard
             </h1>
-            <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+            <p className="mt-1 text-sm text-gray-600 dark:text-gray-400 transition-colors duration-300">
               Track your shared investments
             </p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col gap-3 md:flex-row md:items-center">
             {currentUser && (
               <button
                 onClick={() => setIsModalOpen(true)}
-                className="inline-flex items-center gap-2 rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600"
+                className="order-2 inline-flex items-center justify-center gap-2 rounded-md border-2 border-blue-600 bg-transparent px-4 py-2 text-sm font-medium text-blue-600 transition-all duration-300 ease-in-out hover:bg-blue-600 hover:text-white hover:scale-105 hover:shadow-lg hover:shadow-blue-500/50 active:scale-95 md:order-1 dark:border-blue-500 dark:text-blue-400 dark:hover:bg-blue-500 dark:hover:text-white dark:hover:shadow-blue-400/50"
               >
-                <Plus className="h-4 w-4" />
+                <MessageCirclePlus className="h-4 w-4 transition-transform duration-300 group-hover:rotate-90" />
                 Add
               </button>
             )}
             <button
               onClick={handleLogout}
-              className="inline-flex items-center gap-2 rounded-md bg-gray-200 px-4 py-2 text-sm font-medium text-gray-700 transition-colors hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
+              className="order-1 inline-flex items-center justify-center gap-2 rounded-md border-2 border-gray-600 bg-transparent px-4 py-2 text-sm font-medium text-gray-700 transition-all duration-300 ease-in-out hover:bg-gray-600 hover:text-white hover:scale-105 hover:shadow-lg hover:shadow-gray-500/50 active:scale-95 md:order-2 dark:border-gray-400 dark:text-gray-300 dark:hover:bg-gray-400 dark:hover:text-white dark:hover:shadow-gray-400/50"
             >
-              <LogOut className="h-4 w-4" />
+              <LogOut className="h-4 w-4 transition-transform duration-300 group-hover:rotate-12" />
               Logout
             </button>
           </div>
         </div>
 
         {/* Stats Cards */}
-        <div className="mb-8">
+        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
           <StatsCards stats={stats} />
         </div>
 
         {/* Charts */}
-        <div className="mb-8">
+        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
           <Charts investments={investments} stats={stats} />
         </div>
 
         {/* History */}
-        <div className="mb-8">
+        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
           <HistoryTable
             investments={investments}
             onDelete={handleDeleteInvestment}
