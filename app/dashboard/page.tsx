@@ -65,8 +65,18 @@ export default function DashboardPage() {
       }
     } catch (error) {
       console.error('Error adding investment:', error);
-      const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
-      alert(`Failed to add investment: ${errorMessage}\n\nPlease check:\n1. Database connection\n2. Notes column exists in database\n3. Browser console for details`);
+      const errorMessage = error instanceof Error ? error.message : String(error);
+      const isNetworkError = /failed to fetch|network error|load failed/i.test(errorMessage);
+      if (isNetworkError) {
+        alert(
+          `Network error: Could not reach Supabase.\n\n` +
+            `1. Check your internet connection.\n` +
+            `2. Supabase free tier pauses after inactivity — open your Supabase dashboard (supabase.com), open your project, and click "Restore project" if it’s paused.\n` +
+            `3. Confirm NEXT_PUBLIC_SUPABASE_URL in .env.local matches your project URL (Settings → API in Supabase).`
+        );
+      } else {
+        alert(`Failed to add investment: ${errorMessage}\n\nIf this is a permission error, check Supabase RLS: run the SQL in SUPABASE_SETUP.md to add the "Allow all operations" policy on the investments table.`);
+      }
     } finally {
       setIsSubmitting(false);
     }

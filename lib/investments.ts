@@ -70,11 +70,14 @@ export async function addInvestment(
     return data;
   } catch (error) {
     console.error('Error in addInvestment:', error);
-    // Re-throw with more context for better error messages
-    if (error instanceof Error && error.message) {
-      throw new Error(`Database error: ${error.message}`);
-    }
-    return null;
+    // Re-throw so the UI can show the real message (Supabase errors may not be Error instances)
+    const message =
+      error instanceof Error
+        ? error.message
+        : typeof (error as { message?: string })?.message === 'string'
+          ? (error as { message: string }).message
+          : String(error);
+    throw new Error(message);
   }
 }
 

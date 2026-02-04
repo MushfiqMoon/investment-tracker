@@ -30,7 +30,7 @@ export default function Charts({ investments, stats }: ChartsProps) {
   // Prepare pie chart data
   const pieData = [
     { name: 'Moon', value: stats.husbandTotal },
-    { name: 'Lovelys', value: stats.wifeTotal },
+    { name: 'Lovely', value: stats.wifeTotal },
   ];
 
   // Prepare bar chart data - group by month
@@ -66,7 +66,7 @@ export default function Charts({ investments, stats }: ChartsProps) {
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
       {/* Pie Chart */}
-      <div className="group rounded-lg bg-white p-4 shadow-md dark:bg-gray-800 sm:p-6 lg:col-span-7 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-blue-500/20 dark:hover:shadow-blue-400/20">
+      <div className="group rounded-lg bg-white p-4 shadow-md dark:bg-gray-800 sm:p-6 lg:col-span-12 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-blue-500/20 dark:hover:shadow-blue-400/20">
         <h3 className="mb-4 text-base font-semibold text-gray-900 dark:text-white sm:text-lg transition-colors duration-300">
           Investment Split
         </h3>
@@ -109,7 +109,7 @@ export default function Charts({ investments, stats }: ChartsProps) {
       </div>
 
       {/* Bar Chart */}
-      <div className="group rounded-lg bg-white p-6 shadow-md dark:bg-gray-800 lg:col-span-5 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-purple-500/20 dark:hover:shadow-purple-400/20">
+      <div className="group rounded-lg bg-white p-6 shadow-md dark:bg-gray-800 lg:col-span-12 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-purple-500/20 dark:hover:shadow-purple-400/20">
         <h3 className="mb-4 text-lg font-semibold text-gray-900 dark:text-white transition-colors duration-300">
           Growth Over Time
         </h3>
