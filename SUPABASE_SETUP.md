@@ -54,6 +54,29 @@ If you already created the table without the `notes` column, run this migration:
 ALTER TABLE investments ADD COLUMN IF NOT EXISTS notes TEXT;
 ```
 
+### Create quote_message Table (for Daily Motivation Likes)
+
+For the daily quote feature with like counts, create the `quote_message` table:
+
+```sql
+CREATE TABLE IF NOT EXISTS quote_message (
+  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
+  message_id INTEGER NOT NULL CHECK (message_id >= 1 AND message_id <= 30),
+  quote_date DATE NOT NULL,
+  likes INTEGER NOT NULL DEFAULT 0 CHECK (likes >= 0),
+  UNIQUE(message_id, quote_date)
+);
+
+CREATE INDEX IF NOT EXISTS idx_quote_message_date ON quote_message(quote_date);
+
+ALTER TABLE quote_message ENABLE ROW LEVEL SECURITY;
+
+CREATE POLICY "Allow all operations" ON quote_message
+  FOR ALL
+  USING (true)
+  WITH CHECK (true);
+```
+
 ## 3. Get Your API Keys
 
 1. In your Supabase project dashboard, go to "Settings" (gear icon in left sidebar)
@@ -85,5 +108,5 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY="your-anon-key-from-step-3"
 ## Troubleshooting
 
 - **Connection errors**: Make sure your `.env.local` file has the correct Supabase URL and key
-- **Table not found**: Make sure you ran the SQL query to create the table
+- **Table not found**: Make sure you ran the SQL query to create the required tables (investments, quote_message, etc.)
 - **Permission errors**: Check that RLS policies are set up correctly (the policy in step 2 allows all operations)

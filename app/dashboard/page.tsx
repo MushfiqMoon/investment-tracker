@@ -123,10 +123,9 @@ export default function DashboardPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 animate-fade-in">
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-8 flex items-center justify-between animate-fade-in-up">
+    <div className="min-h-screen bg-gray-50 py-8 dark:bg-gray-900 animate-fade-in">
+      {/* Header */}
+      <div className="mb-8 flex items-center justify-between animate-fade-in-up">
           <div>
             <h1 className="text-3xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
               Investment Dashboard
@@ -153,43 +152,42 @@ export default function DashboardPage() {
               Logout
             </button>
           </div>
-        </div>
+      </div>
 
-        {/* Stats Cards */}
-        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
+      {/* Stats Cards */}
+      <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
           <StatsCards stats={stats} />
-        </div>
+      </div>
 
-        {/* Monthly Savings Teaser */}
-        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.15s', animationFillMode: 'both' }}>
+      {/* Monthly Savings Teaser */}
+      <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.15s', animationFillMode: 'both' }}>
           <MonthlySavingsTeaser />
-        </div>
+      </div>
 
-        {/* Charts */}
-        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
+      {/* Charts */}
+      <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
           <Charts investments={investments} stats={stats} />
-        </div>
+      </div>
 
-        {/* History */}
-        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
+      {/* History */}
+      <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.3s', animationFillMode: 'both' }}>
           <HistoryTable
             investments={investments}
             onDelete={handleDeleteInvestment}
             isLoading={isSubmitting}
           />
-        </div>
-
-        {/* Add Investment Modal */}
-        {currentUser && (
-          <AddInvestmentModal
-            isOpen={isModalOpen}
-            onClose={() => setIsModalOpen(false)}
-            currentUser={currentUser}
-            onSubmit={handleAddInvestment}
-            isLoading={isSubmitting}
-          />
-        )}
       </div>
+
+      {/* Add Investment Modal */}
+      {currentUser && (
+        <AddInvestmentModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          currentUser={currentUser}
+          onSubmit={handleAddInvestment}
+          isLoading={isSubmitting}
+        />
+      )}
     </div>
   );
 }

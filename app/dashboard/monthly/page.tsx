@@ -101,10 +101,9 @@ export default function MonthlySavingsPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 animate-fade-in">
-      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-8 flex items-center justify-between animate-fade-in-up">
+    <div className="min-h-screen bg-gray-50 py-8 dark:bg-gray-900 animate-fade-in">
+      {/* Header */}
+      <div className="mb-8 flex items-center justify-between animate-fade-in-up">
           <div className="flex items-center gap-4">
             <Link
               href="/dashboard"
@@ -124,10 +123,10 @@ export default function MonthlySavingsPage() {
             <LogOut className="h-4 w-4" />
             Logout
           </button>
-        </div>
+      </div>
 
-        {/* Month Selector */}
-        <div className="mb-6">
+      {/* Month Selector */}
+      <div className="mb-6">
           <MonthSelector
             year={selectedYear}
             month={selectedMonth}
@@ -136,10 +135,10 @@ export default function MonthlySavingsPage() {
               setSelectedMonth(m);
             }}
           />
-        </div>
+      </div>
 
-        {/* Content */}
-        <div className="space-y-6">
+      {/* Content */}
+      <div className="space-y-6">
           <MonthlySavingsCard stats={stats} />
 
           <MonthlyGoalProgress
@@ -169,14 +168,13 @@ export default function MonthlySavingsPage() {
             onSave={handleSaveMonthlySavings}
             isLoading={isLoading}
           />
-        </div>
-
-        {stats.total === 0 && monthlyData.length === 0 && (
-          <p className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
-            No savings recorded for this month. Use the form above to add.
-          </p>
-        )}
       </div>
+
+      {stats.total === 0 && monthlyData.length === 0 && (
+        <p className="mt-6 text-center text-sm text-gray-500 dark:text-gray-400">
+          No savings recorded for this month. Use the form above to add.
+        </p>
+      )}
     </div>
   );
 }
