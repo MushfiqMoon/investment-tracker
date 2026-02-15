@@ -1,5 +1,7 @@
 'use client';
 
+import { formatCurrency } from '@/lib/format';
+
 interface MonthlyBreakdownBarProps {
   husbandTotal: number;
   wifeTotal: number;
@@ -11,10 +13,6 @@ export default function MonthlyBreakdownBar({
   wifeTotal,
   total,
 }: MonthlyBreakdownBarProps) {
-  const formatCurrency = (amount: number) => {
-    return `৳${amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-  };
-
   const husbandPercent = total > 0 ? (husbandTotal / total) * 100 : 0;
   const wifePercent = total > 0 ? (wifeTotal / total) * 100 : 0;
 

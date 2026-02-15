@@ -9,22 +9,10 @@ import {
   aggregateByMonth,
   type MonthAggregate,
 } from '@/lib/monthlySavings';
+import { formatCurrency } from '@/lib/format';
+import { MONTH_NAMES } from '@/lib/constants';
+import PageLoader from '@/components/PageLoader';
 import { ArrowLeft } from 'lucide-react';
-
-const MONTH_NAMES = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
 
 export default function MonthlyHistoryPage() {
   const [selectedYear, setSelectedYear] = useState(() => new Date().getFullYear());
@@ -54,22 +42,11 @@ export default function MonthlyHistoryPage() {
     loadHistory();
   }, [router, loadHistory]);
 
-  const formatCurrency = (amount: number) => {
-    return `৳${amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-  };
-
   const currentYear = new Date().getFullYear();
   const yearOptions = Array.from({ length: 6 }, (_, i) => currentYear - i);
 
   if (isLoading && aggregates.length === 0) {
-    return (
-      <div className="flex min-h-screen items-center justify-center animate-fade-in">
-        <div className="text-center">
-          <div className="mb-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
-          <p className="text-gray-600 dark:text-gray-400">Loading...</p>
-        </div>
-      </div>
-    );
+    return <PageLoader />;
   }
 
   return (

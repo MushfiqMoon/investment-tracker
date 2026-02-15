@@ -1,6 +1,8 @@
 'use client';
 
 import { Investment } from '@/lib/investments';
+import { formatCurrency } from '@/lib/format';
+import { getInvestorDisplayName } from '@/lib/constants';
 import { Trash2 } from 'lucide-react';
 
 interface HistoryTableProps {
@@ -14,20 +16,12 @@ export default function HistoryTable({
   onDelete,
   isLoading,
 }: HistoryTableProps) {
-  const formatCurrency = (amount: number) => {
-    return `৳${amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-  };
-
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('en-US', {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
     });
-  };
-
-  const getInvestorDisplayName = (investor: 'Husband' | 'Wife') => {
-    return investor === 'Husband' ? 'Moon' : 'Lovely';
   };
 
   if (investments.length === 0) {

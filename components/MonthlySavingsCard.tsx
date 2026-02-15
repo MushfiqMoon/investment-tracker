@@ -1,6 +1,7 @@
 'use client';
 
-import { MonthlyStats } from '@/lib/investments';
+import { MonthlyStats } from '@/lib/monthlySavings';
+import { formatCurrency } from '@/lib/format';
 import { Coins } from 'lucide-react';
 
 interface MonthlySavingsCardProps {
@@ -8,10 +9,6 @@ interface MonthlySavingsCardProps {
 }
 
 export default function MonthlySavingsCard({ stats }: MonthlySavingsCardProps) {
-  const formatCurrency = (amount: number) => {
-    return `৳${amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-  };
-
   return (
     <div className="rounded-lg bg-white p-6 shadow-md dark:bg-gray-800 transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-green-500/20 dark:hover:shadow-green-400/20">
       <div className="flex items-center justify-between">

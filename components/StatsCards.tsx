@@ -1,6 +1,7 @@
 'use client';
 
 import { InvestmentStats } from '@/lib/investments';
+import { formatCurrency } from '@/lib/format';
 import { Coins } from 'lucide-react';
 
 import Image from 'next/image';
@@ -10,10 +11,6 @@ interface StatsCardsProps {
 }
 
 export default function StatsCards({ stats }: StatsCardsProps) {
-  const formatCurrency = (amount: number) => {
-    return `৳${amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-  };
-
   return (
     <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
       <div className="group rounded-lg bg-white p-8 shadow-md dark:bg-gray-800 min-h-[180px] transition-all duration-300 ease-in-out hover:shadow-xl hover:shadow-green-500/20 dark:hover:shadow-green-400/20">

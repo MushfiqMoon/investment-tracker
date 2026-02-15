@@ -115,11 +115,47 @@ body {
 
 .animate-marquee {
   animation: marquee 18s linear infinite;
+  transition: none; /* override global * transition so animation can run */
 }
 
 .animate-heart-beat {
   animation: beat 0.25s infinite alternate;
   transform-origin: center;
+}
+
+/* Heart burst animation (Twitter-style) on like */
+@keyframes heart-burst {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 100%;
+  }
+}
+
+.heart-burst-sprite {
+  display: block;
+  width: 50px;
+  height: 55px;
+  background-image: url('/web_heart_animation_edge.png');
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-size: 2900%;
+  border-radius: 50%;
+  flex-shrink: 0;
+  transition: none;
+}
+
+.heart-burst-sprite.animate {
+  animation: heart-burst steps(28) 0.8s forwards;
+}
+
+.heart-burst-sprite.filled {
+  background-position: 100%;
+}
+
+.heart-burst-sprite.empty {
+  background-position: 0%;
 }
 
 /* Smooth Transitions */

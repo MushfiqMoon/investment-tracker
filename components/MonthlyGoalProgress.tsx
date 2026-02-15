@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import { formatCurrency } from '@/lib/format';
 import { Target, ChevronRight } from 'lucide-react';
 
 interface MonthlyGoalProgressProps {
@@ -14,10 +15,6 @@ export default function MonthlyGoalProgress({
   goal,
   historyHref = '/dashboard/monthly/history',
 }: MonthlyGoalProgressProps) {
-  const formatCurrency = (amount: number) => {
-    return `৳${amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-  };
-
   const progressPercent = goal > 0 ? Math.min(100, (current / goal) * 100) : 0;
 
   return (
