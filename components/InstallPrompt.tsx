@@ -18,7 +18,7 @@ export default function InstallPrompt() {
   if (isStandalone) return null;
 
   return (
-    <div className="border-b border-blue-200 bg-blue-50 px-4 py-3 dark:border-blue-900 dark:bg-blue-950">
+    <div className="border-b border-blue-200 bg-blue-50 px-4 py-3 dark:border-blue-900 dark:bg-blue-950 lg:hidden">
       <div className="mx-auto flex max-w-4xl items-center justify-between gap-4">
         <div className="flex items-center gap-3">
           <div className="rounded-full bg-blue-100 p-2 dark:bg-blue-900">

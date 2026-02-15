@@ -45,7 +45,7 @@ export default function MonthSelector({ year, month, onChange }: MonthSelectorPr
         className="rounded-lg p-2 text-gray-600 transition-all hover:bg-gray-100 hover:text-gray-900 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         aria-label="Previous month"
       >
-        <ChevronLeft className="h-5 w-5" />
+        <ChevronLeft className="h-8 w-8" />
       </button>
       <span className="min-w-[160px] text-center text-lg font-semibold text-gray-900 dark:text-white">
         {MONTH_NAMES[month - 1]} {year}
@@ -56,7 +56,7 @@ export default function MonthSelector({ year, month, onChange }: MonthSelectorPr
         className="rounded-lg p-2 text-gray-600 transition-all hover:bg-gray-100 hover:text-gray-900 disabled:opacity-50 disabled:cursor-not-allowed dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"
         aria-label="Next month"
       >
-        <ChevronRight className="h-5 w-5" />
+        <ChevronRight className="h-8 w-8" />
       </button>
     </div>
   );
