@@ -43,17 +43,17 @@ export default function StatsCards({ stats }: StatsCardsProps) {
           />
         </div>
         {/* Overlay */}
-        <div className="absolute inset-0 z-10 bg-black/40 dark:bg-black/80 transition-all duration-300 ease-in-out group-hover:bg-black/30 dark:group-hover:bg-black/70"></div>
+        <div className="absolute inset-0 z-10 bg-black/80 transition-all duration-300 ease-in-out group-hover:bg-black/30 dark:group-hover:bg-black/70"></div>
         {/* Content */}
         <div className="relative z-20 flex items-center justify-between">
           <div>
-            <p className="text-base font-bold text-blue-600 dark:text-blue-400 transition-colors duration-300">
+            <p className="text-base font-bold text-blue-400 transition-colors duration-300">
               Moons Total
             </p>
-            <p className="mt-4 text-4xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
+            <p className="mt-4 text-4xl font-bold text-white transition-colors duration-300">
               {formatCurrency(stats.husbandTotal)}
             </p>
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
+            <p className="mt-2 text-sm text-gray-200 transition-colors duration-300">
               {stats.total > 0 ? ((stats.husbandTotal / stats.total) * 100).toFixed(1) : '0.0'}%
             </p>
           </div>
@@ -84,13 +84,13 @@ export default function StatsCards({ stats }: StatsCardsProps) {
         {/* Content */}
         <div className="relative z-20 flex items-center justify-between">
           <div>
-            <p className="text-base font-bold text-purple-600 dark:text-purple-400 transition-colors duration-300">
+            <p className="text-base font-bold text-purple-400 transition-colors duration-300">
               Lovelys Total
             </p>
-            <p className="mt-4 text-4xl font-bold text-gray-900 dark:text-white transition-colors duration-300">
+            <p className="mt-4 text-4xl font-bold text-white transition-colors duration-300">
               {formatCurrency(stats.wifeTotal)}
             </p>
-            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400 transition-colors duration-300">
+            <p className="mt-2 text-sm text-gray-200 transition-colors duration-300">
               {stats.total > 0 ? ((stats.wifeTotal / stats.total) * 100).toFixed(1) : '0.0'}%
             </p>
           </div>

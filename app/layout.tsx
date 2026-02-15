@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import InstallPrompt from "@/components/InstallPrompt";
+import DailyQuoteCard from "@/components/DailyQuoteCard";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +35,10 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <InstallPrompt />
-        {children}
+        <div className="mx-auto max-w-7xl px-4 pb-6 sm:px-6 lg:px-4 bg-gray-50 dark:bg-gray-900">
+          {children}
+          <DailyQuoteCard />
+        </div>
       </body>
     </html>
   );

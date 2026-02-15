@@ -73,10 +73,9 @@ export default function MonthlyHistoryPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 animate-fade-in">
-      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Header */}
-        <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between animate-fade-in-up">
+    <div className="min-h-screen bg-gray-50 py-8 dark:bg-gray-900 animate-fade-in">
+      {/* Header */}
+      <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between animate-fade-in-up">
           <div className="flex items-center gap-4">
             <Link
               href="/dashboard/monthly"
@@ -108,8 +107,8 @@ export default function MonthlyHistoryPage() {
           </div>
         </div>
 
-        {/* Month cards grid */}
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 animate-fade-in-up">
+      {/* Month cards grid */}
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 animate-fade-in-up">
           {aggregates.map((agg, i) => {
             const progressPercent =
               agg.goal > 0 ? Math.min(100, (agg.total / agg.goal) * 100) : 0;
@@ -149,7 +148,6 @@ export default function MonthlyHistoryPage() {
               </div>
             );
           })}
-        </div>
       </div>
     </div>
   );
