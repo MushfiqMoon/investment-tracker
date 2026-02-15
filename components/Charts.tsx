@@ -127,7 +127,7 @@ export default function Charts({ investments, stats }: ChartsProps) {
             <Tooltip 
               formatter={formatCurrency}
               contentStyle={{
-                backgroundColor: 'rgba(255, 255, 255, 0.95)',
+                backgroundColor: 'rgba(0, 0, 0, 0.95)',
                 border: '1px solid rgba(0, 0, 0, 0.1)',
                 borderRadius: '8px',
                 transition: 'all 0.3s ease-in-out',

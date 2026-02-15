@@ -11,6 +11,7 @@ import {
   Investment,
 } from '@/lib/investments';
 import StatsCards from '@/components/StatsCards';
+import MonthlySavingsTeaser from '@/components/MonthlySavingsTeaser';
 import Charts from '@/components/Charts';
 import AddInvestmentModal from '@/components/AddInvestmentModal';
 import HistoryTable from '@/components/HistoryTable';
@@ -157,6 +158,11 @@ export default function DashboardPage() {
         {/* Stats Cards */}
         <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.1s', animationFillMode: 'both' }}>
           <StatsCards stats={stats} />
+        </div>
+
+        {/* Monthly Savings Teaser */}
+        <div className="mb-8 animate-fade-in-up" style={{ animationDelay: '0.15s', animationFillMode: 'both' }}>
+          <MonthlySavingsTeaser />
         </div>
 
         {/* Charts */}
