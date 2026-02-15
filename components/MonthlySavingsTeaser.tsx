@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { getMonthlySavings, getMonthlyStatsFromRows } from '@/lib/monthlySavings';
+import { formatCurrency } from '@/lib/format';
 import { ChevronRight } from 'lucide-react';
 
 export default function MonthlySavingsTeaser() {
@@ -23,10 +24,6 @@ export default function MonthlySavingsTeaser() {
     };
     load();
   }, []);
-
-  const formatCurrency = (amount: number) => {
-    return `৳${amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-  };
 
   return (
     <div className="block rounded-lg bg-white p-6 shadow-md dark:bg-gray-800">

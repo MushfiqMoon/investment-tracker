@@ -18,6 +18,7 @@ import MonthlyGoalProgress from '@/components/MonthlyGoalProgress';
 import MonthComparisonCard from '@/components/MonthComparisonCard';
 import MonthlyBreakdownBar from '@/components/MonthlyBreakdownBar';
 import MonthlySavingsForm from '@/components/MonthlySavingsForm';
+import PageLoader from '@/components/PageLoader';
 import { ArrowLeft, LogOut } from 'lucide-react';
 
 export default function MonthlySavingsPage() {
@@ -90,14 +91,7 @@ export default function MonthlySavingsPage() {
   const goal = monthlyData.reduce((sum, r) => sum + r.goal_amount, 0);
 
   if (isLoading && monthlyData.length === 0) {
-    return (
-      <div className="flex min-h-screen items-center justify-center animate-fade-in">
-        <div className="text-center">
-          <div className="mb-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent"></div>
-          <p className="text-gray-600 dark:text-gray-400">Loading...</p>
-        </div>
-      </div>
-    );
+    return <PageLoader />;
   }
 
   return (

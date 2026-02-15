@@ -15,6 +15,7 @@ import MonthlySavingsTeaser from '@/components/MonthlySavingsTeaser';
 import Charts from '@/components/Charts';
 import AddInvestmentModal from '@/components/AddInvestmentModal';
 import HistoryTable from '@/components/HistoryTable';
+import PageLoader from '@/components/PageLoader';
 import { LogOut, MessageCirclePlus } from 'lucide-react';
 
 export default function DashboardPage() {
@@ -112,14 +113,7 @@ export default function DashboardPage() {
   const stats = calculateStats(investments);
 
   if (isLoading) {
-    return (
-      <div className="flex min-h-screen items-center justify-center animate-fade-in">
-        <div className="text-center">
-          <div className="mb-4 inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent transition-colors duration-300"></div>
-          <p className="text-gray-600 dark:text-gray-400 transition-colors duration-300 animate-pulse-slow">Loading dashboard...</p>
-        </div>
-      </div>
-    );
+    return <PageLoader message="Loading dashboard..." />;
   }
 
   return (

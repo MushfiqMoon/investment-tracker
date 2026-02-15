@@ -192,54 +192,6 @@ export async function deleteInvestment(id: string): Promise<boolean> {
   }
 }
 
-export interface MonthlyStats {
-  total: number;
-  husbandTotal: number;
-  wifeTotal: number;
-  husbandPercentage: number;
-  wifePercentage: number;
-}
-
-export function getMonthlyStats(
-  investments: Investment[],
-  year: number,
-  month: number
-): MonthlyStats {
-  const filtered = investments.filter((inv) => {
-    const d = new Date(inv.date);
-    return d.getFullYear() === year && d.getMonth() + 1 === month;
-  });
-  return calculateStats(filtered);
-}
-
-export interface MonthComparison {
-  thisMonth: number;
-  lastMonth: number;
-  changePercent: number;
-}
-
-export function getMonthComparison(
-  investments: Investment[],
-  year: number,
-  month: number
-): MonthComparison {
-  const thisStats = getMonthlyStats(investments, year, month);
-  let prevYear = year;
-  let prevMonth = month - 1;
-  if (prevMonth < 1) {
-    prevMonth = 12;
-    prevYear = year - 1;
-  }
-  const lastStats = getMonthlyStats(investments, prevYear, prevMonth);
-
-  const thisMonth = thisStats.total;
-  const lastMonth = lastStats.total;
-  const changePercent =
-    lastMonth > 0 ? ((thisMonth - lastMonth) / lastMonth) * 100 : (thisMonth > 0 ? 100 : 0);
-
-  return { thisMonth, lastMonth, changePercent };
-}
-
 export function calculateStats(investments: Investment[]): InvestmentStats {
   const total = investments.reduce((acc, curr) => acc + curr.amount, 0);
   const husbandTotal = investments
@@ -259,34 +211,4 @@ export function calculateStats(investments: Investment[]): InvestmentStats {
     husbandPercentage,
     wifePercentage,
   };
-}
-
-// Test database connection and table structure
-export async function testDatabaseConnection(): Promise<{ success: boolean; error?: string; details?: unknown }> {
-  try {
-    const { error } = await supabase
-      .from('investments')
-      .select('*')
-      .limit(1);
-
-    if (error) {
-      return {
-        success: false,
-        error: error.message,
-        details: {
-          code: error.code,
-          details: error.details,
-          hint: error.hint,
-        },
-      };
-    }
-
-    return { success: true };
-  } catch (error) {
-    return {
-      success: false,
-      error: error instanceof Error ? error.message : 'Unknown error',
-      details: error,
-    };
-  }
 }

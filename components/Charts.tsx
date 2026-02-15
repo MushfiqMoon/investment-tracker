@@ -1,6 +1,7 @@
 'use client';
 
 import { Investment } from '@/lib/investments';
+import { formatCurrencyFormatter } from '@/lib/format';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import { useEffect, useState } from 'react';
 
@@ -13,6 +14,13 @@ interface ChartsProps {
 }
 
 const COLORS = ['#3b82f6', '#a855f7'];
+
+const TOOLTIP_STYLE = {
+  backgroundColor: 'rgba(255, 255, 255, 0.95)',
+  border: '1px solid rgba(0, 0, 0, 0.1)',
+  borderRadius: '8px',
+  transition: 'all 0.3s ease-in-out',
+};
 
 export default function Charts({ investments, stats }: ChartsProps) {
   const [isMobile, setIsMobile] = useState(false);
@@ -58,11 +66,6 @@ export default function Charts({ investments, stats }: ChartsProps) {
     return new Date(a.month).getTime() - new Date(b.month).getTime();
   });
 
-  const formatCurrency = (value: number | undefined) => {
-    if (value === undefined || value === null) return '৳0';
-    return `৳${value.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-  };
-
   return (
     <div className="grid grid-cols-1 gap-6 lg:grid-cols-12 animate-fade-in-up" style={{ animationDelay: '0.2s', animationFillMode: 'both' }}>
       {/* Pie Chart */}
@@ -95,13 +98,8 @@ export default function Charts({ investments, stats }: ChartsProps) {
               ))}
             </Pie>
             <Tooltip 
-              formatter={formatCurrency}
-              contentStyle={{
-                backgroundColor: 'rgba(255, 255, 255, 0.95)',
-                border: '1px solid rgba(0, 0, 0, 0.1)',
-                borderRadius: '8px',
-                transition: 'all 0.3s ease-in-out',
-              }}
+              formatter={formatCurrencyFormatter}
+              contentStyle={TOOLTIP_STYLE}
               animationDuration={300}
             />
           </PieChart>
@@ -121,17 +119,12 @@ export default function Charts({ investments, stats }: ChartsProps) {
               style={{ transition: 'all 0.3s ease-in-out' }}
             />
             <YAxis 
-              tickFormatter={formatCurrency}
+              tickFormatter={formatCurrencyFormatter}
               style={{ transition: 'all 0.3s ease-in-out' }}
             />
             <Tooltip 
-              formatter={formatCurrency}
-              contentStyle={{
-                backgroundColor: 'rgba(0, 0, 0, 0.95)',
-                border: '1px solid rgba(0, 0, 0, 0.1)',
-                borderRadius: '8px',
-                transition: 'all 0.3s ease-in-out',
-              }}
+              formatter={formatCurrencyFormatter}
+              contentStyle={TOOLTIP_STYLE}
               animationDuration={300}
             />
             <Legend 

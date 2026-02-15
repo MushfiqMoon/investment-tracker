@@ -1,5 +1,6 @@
 'use client';
 
+import { MONTH_NAMES } from '@/lib/constants';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface MonthSelectorProps {
@@ -7,11 +8,6 @@ interface MonthSelectorProps {
   month: number;
   onChange: (year: number, month: number) => void;
 }
-
-const MONTH_NAMES = [
-  'January', 'February', 'March', 'April', 'May', 'June',
-  'July', 'August', 'September', 'October', 'November', 'December'
-];
 
 export default function MonthSelector({ year, month, onChange }: MonthSelectorProps) {
   const now = new Date();

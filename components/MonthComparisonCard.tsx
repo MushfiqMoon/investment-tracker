@@ -1,5 +1,6 @@
 'use client';
 
+import { formatCurrency } from '@/lib/format';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
 
 interface MonthComparisonCardProps {
@@ -13,10 +14,6 @@ export default function MonthComparisonCard({
   lastMonth,
   changePercent,
 }: MonthComparisonCardProps) {
-  const formatCurrency = (amount: number) => {
-    return `৳${amount.toLocaleString('en-US', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
-  };
-
   const isPositive = changePercent > 0;
   const isNegative = changePercent < 0;
   const isZero = changePercent === 0;

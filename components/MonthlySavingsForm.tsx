@@ -77,10 +77,11 @@ export default function MonthlySavingsForm({
             <div className="space-y-3 rounded-lg border border-gray-200 p-4 dark:border-gray-600">
               <p className="text-sm font-medium text-blue-600 dark:text-blue-400">Moon</p>
               <div>
-                <label className="mb-1 block text-sm text-gray-600 dark:text-gray-400">
+                <label htmlFor="moon-amount" className="mb-1 block text-sm text-gray-600 dark:text-gray-400">
                   Amount saved
                 </label>
                 <input
+                  id="moon-amount"
                   type="number"
                   min="0"
                   step="1"
@@ -90,8 +91,9 @@ export default function MonthlySavingsForm({
                 />
               </div>
               <div>
-                <label className="mb-1 block text-sm text-gray-600 dark:text-gray-400">Goal</label>
+                <label htmlFor="moon-goal" className="mb-1 block text-sm text-gray-600 dark:text-gray-400">Goal</label>
                 <input
+                  id="moon-goal"
                   type="number"
                   min="0"
                   step="1"
@@ -106,10 +108,11 @@ export default function MonthlySavingsForm({
             <div className="space-y-3 rounded-lg border border-gray-200 p-4 dark:border-gray-600">
               <p className="text-sm font-medium text-purple-600 dark:text-purple-400">Lovely</p>
               <div>
-                <label className="mb-1 block text-sm text-gray-600 dark:text-gray-400">
+                <label htmlFor="lovely-amount" className="mb-1 block text-sm text-gray-600 dark:text-gray-400">
                   Amount saved
                 </label>
                 <input
+                  id="lovely-amount"
                   type="number"
                   min="0"
                   step="1"
@@ -119,8 +122,9 @@ export default function MonthlySavingsForm({
                 />
               </div>
               <div>
-                <label className="mb-1 block text-sm text-gray-600 dark:text-gray-400">Goal</label>
+                <label htmlFor="lovely-goal" className="mb-1 block text-sm text-gray-600 dark:text-gray-400">Goal</label>
                 <input
+                  id="lovely-goal"
                   type="number"
                   min="0"
                   step="1"
